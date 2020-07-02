@@ -15,7 +15,7 @@ Surmiser was develop to demo the use of [Quarkus](https://quarkus.io), the Super
 Below are the API references used in the demo that are exposed on port 8080.
 
     GET /api/person?name={name}
-    GET	/api/history
+    GET /api/history
     GET /api/history?name={name}
     GET /health
     GET /health/live
