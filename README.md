@@ -1,4 +1,7 @@
 # Surmiser
+
+![GitHub](https://img.shields.io/github/license/StevenJDH/quarkus-surmiser-app)
+
 Surmiser was develop to demo the use of [Quarkus](https://quarkus.io), the Supersonic Subatomic Java Framework, to create a cloud native microservice that exposes a few APIs for testing. The app surmises about a person's name to predict their gender, age, and nationality. The service is powered by [Genderize.io](https://genderize.io), [Agify.io](https://agify.io), and [Nationalize.io](https://nationalize.io), which it uses to produce a determination based on the supplied name.
 
 ## Features
