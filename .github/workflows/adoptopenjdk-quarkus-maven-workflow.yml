@@ -47,8 +47,9 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any.
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: ./mvnw test org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-           -Dsonar.projectKey=StevenJDH_quarkus-surmiser-app \
-           -Dsonar.organization=stevenjdh \
-           -Dsonar.host.url=https://sonarcloud.io \
-           -Dsonar.login=$SONAR_TOKEN
+      run: |
+        ./mvnw test org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          -Dsonar.projectKey="StevenJDH_quarkus-surmiser-app" \
+          -Dsonar.organization="stevenjdh" \
+          -Dsonar.host.url="https://sonarcloud.io" \
+          -Dsonar.login=$SONAR_TOKEN
