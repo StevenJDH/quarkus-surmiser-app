@@ -1,8 +1,21 @@
 # Surmiser
 
+![build-test](https://github.com/StevenJDH/quarkus-surmiser-app/workflows/build/badge.svg)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/dd8f9d7560294b428992187dd09dfdcf)](https://www.codacy.com/gh/StevenJDH/quarkus-surmiser-app/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=StevenJDH/quarkus-surmiser-app&amp;utm_campaign=Badge_Grade)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=sqale_index)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
+[![Sonar Violations (long format)](https://img.shields.io/sonar/violations/StevenJDH_quarkus-surmiser-app?format=long&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=security_rating)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=ncloc)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
+![Maintenance](https://img.shields.io/maintenance/yes/2020)
 ![GitHub](https://img.shields.io/github/license/StevenJDH/quarkus-surmiser-app)
 
 Surmiser was develop to demo the use of [Quarkus](https://quarkus.io), the Supersonic Subatomic Java Framework, to create a cloud native microservice that exposes a few APIs for testing. The app surmises about a person's name to predict their gender, age, and nationality. The service is powered by [Genderize.io](https://genderize.io), [Agify.io](https://agify.io), and [Nationalize.io](https://nationalize.io), which it uses to produce a determination based on the supplied name.
+
+[![Buy me a coffee](https://img.shields.io/static/v1?label=Buy%20me%20a&message=coffee&color=important&style=flat&logo=buy-me-a-coffee&logoColor=white)](https://www.buymeacoffee.com/stevenjdh)
 
 ## Features
 * Third-party service consolidation using MicroProfiling.
@@ -28,7 +41,7 @@ The APIs can also be tested using the interactive swagger documentation located 
 
 ## Running the application in dev mode
 You can run the application in dev mode that enables live coding using:
-```
+```bash
 ./mvnw quarkus:dev
 ```
 
