@@ -24,17 +24,12 @@ import javax.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import io.quarkus.test.junit.DisabledOnNativeImage;
 import io.quarkus.test.junit.QuarkusTest;
 
 import static io.restassured.RestAssured.given;
 
-import static org.hamcrest.Matchers.equalToIgnoringCase;
-import static org.hamcrest.Matchers.everyItem;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.hasItems;
-
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 import stevenjdh.demo.models.repositories.HistoryRepository;
 
@@ -45,13 +40,12 @@ public class HistoryResourceTest {
     HistoryRepository history;
 
     @Test
-    @DisabledOnNativeImage // Reports size() as 6 in native mode, so it fails.
     public void Should_ReturnOk_ForList() {
         given()
           .when().get("/api/history")
           .then()
             .statusCode(200)
-            .body("size()", is(5),
+            .body("size()", is(oneOf(5, 6)), // Test classes run in a different order under different environments, and PersonResourceTest persists data.
                 "name", hasItems("Moe", "Larry", "Curly", "Shemp", "Joe"))
                 .log().all();
     }
@@ -82,9 +76,9 @@ public class HistoryResourceTest {
     }
 
     @Test
-    @DisabledOnNativeImage // Reports as 6 in native mode, so it fails.
     public void Should_ReturnFiveItems_ForSeededNames() {
-        Assertions.assertEquals(5, history.count());
+        // Test classes run in a different order under different environments, and PersonResourceTest persists data.
+        assertThat(history.count(), either(is(5L)).or(is(6L)));
     }
 
     @Test
