@@ -23,11 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.oneOf;
-
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.*;
 
 @QuarkusTest
 public class PersonResourceTest {
@@ -48,7 +44,7 @@ public class PersonResourceTest {
                 .log().all();
     }
 
-    // Testing invalid paraemeters seperatly because batching passing always.
+    // Testing invalid parameters separately because batching passes always.
     @Test
     public void Should_ReturnBadRquest_ForEmptyName() {
         given()
