@@ -23,9 +23,9 @@ jobs:
         fetch-depth: 0
 
     - name: Install AdoptOpenJDK
-      uses: AdoptOpenJDK/install-jdk@v1
+      uses: AdoptOpenJDK/install-jdk@v1.1.1
       with:
-        version: '11' # Java 11 is better for Quarkus.
+        version: '11' # Java 11+ required for Quarkus 2x.
         architecture: x64
         impl: hotspot
 
@@ -51,7 +51,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any.
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-        ./mvnw test org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+        ./mvnw verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
           -Dsonar.projectKey="StevenJDH_quarkus-surmiser-app" \
           -Dsonar.organization="stevenjdh" \
           -Dsonar.host.url="https://sonarcloud.io" \
