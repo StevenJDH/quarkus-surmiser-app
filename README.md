@@ -9,8 +9,9 @@
 [![Sonar Violations (long format)](https://img.shields.io/sonar/violations/StevenJDH_quarkus-surmiser-app?format=long&server=https%3A%2F%2Fsonarcloud.io)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=security_rating)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=coverage)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=ncloc)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
-![Maintenance](https://img.shields.io/maintenance/yes/2020)
+![Maintenance](https://img.shields.io/maintenance/yes/2021)
 ![GitHub](https://img.shields.io/github/license/StevenJDH/quarkus-surmiser-app)
 
 Surmiser was develop to demo the use of [Quarkus](https://quarkus.io), the Supersonic Subatomic Java Framework, to create a cloud native microservice that exposes a few APIs for testing. The app surmises about a person's name to predict their gender, age, and nationality. The service is powered by [Genderize.io](https://genderize.io), [Agify.io](https://agify.io), and [Nationalize.io](https://nationalize.io), which it uses to produce a determination based on the supplied name.
@@ -33,11 +34,11 @@ Below are the API references used in the demo that are exposed on port 8080.
     GET /api/person?name={name}
     GET /api/history
     GET /api/history?name={name}
-    GET /health
-    GET /health/live
-    GET /health/ready
+    GET /q/health
+    GET /q/health/live
+    GET /q/health/ready
 
-The APIs can also be tested using the interactive swagger documentation located at `localhost:8080/swagger-ui`.
+The APIs can also be tested using the interactive swagger documentation located at `localhost:8080/q/swagger-ui`.
 
 ## Running the application in dev mode
 You can run the application in dev mode that enables live coding using:
