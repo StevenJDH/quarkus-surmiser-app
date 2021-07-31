@@ -12,11 +12,20 @@
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus-plugin.version>1.9.1.Final</quarkus-plugin.version>
-    <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
-    <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>1.9.1.Final</quarkus.platform.version>
+    <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
+    <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
+    <quarkus.platform.version>2.1.0.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+    <!-- JaCoCo Properties -->
+    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+    <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/jacoco-report/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.language>java</sonar.language>
+    <!-- SonarCloud Links -->
+    <sonar.links.homepage>https://github.com/StevenJDH/quarkus-surmiser-app</sonar.links.homepage>
+    <sonar.links.ci>https://github.com/StevenJDH/quarkus-surmiser-app/actions</sonar.links.ci>
+    <sonar.links.issue>https://github.com/StevenJDH/quarkus-surmiser-app/issues</sonar.links.issue>
+    <sonar.links.scm>https://github.com/StevenJDH/quarkus-surmiser-app</sonar.links.scm>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -32,17 +41,11 @@
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-resteasy</artifactId>
+      <artifactId>quarkus-arc</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-junit5</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>rest-assured</artifactId>
-      <scope>test</scope>
+      <artifactId>quarkus-resteasy</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -80,19 +83,36 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-container-image-jib</artifactId>
     </dependency>
+    
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-junit5</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jacoco</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
       <plugin>
-        <groupId>io.quarkus</groupId>
+        <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
-        <version>${quarkus-plugin.version}</version>
+        <version>${quarkus.platform.version}</version>
+        <extensions>true</extensions>
         <executions>
           <execution>
             <goals>
+              <goal>build</goal>
               <goal>generate-code</goal>
               <goal>generate-code-tests</goal>
-              <goal>build</goal>
             </goals>
           </execution>
         </executions>
@@ -100,6 +120,9 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${compiler-plugin.version}</version>
+        <configuration>
+          <parameters>${maven.compiler.parameters}</parameters>
+        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>

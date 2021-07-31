@@ -35,7 +35,7 @@ public class HealthResourceTest {
     @Test
     public void Should_ReturnOkWithUpStatuses_ForAllHealthChecks() {
 		given()
-          .when().get("/health")
+          .when().get("/q/health")
           .then()
             .statusCode(200)
             .body("status", is("UP"),
@@ -46,7 +46,7 @@ public class HealthResourceTest {
     @Test
     public void Should_ReturnOkWithUpStatus_ForReadinessCheck() {
 		given()
-          .when().get("/health/ready")
+          .when().get("/q/health/ready")
           .then()
             .statusCode(200)
             .body("status", is("UP"))
@@ -56,7 +56,7 @@ public class HealthResourceTest {
     @Test
     public void Should_ReturnOkWithUpStatus_ForLivenessCheck() {
 		given()
-          .when().get("/health/live")
+          .when().get("/q/health/live")
           .then()
             .statusCode(200)
             .body("status", is("UP"))
