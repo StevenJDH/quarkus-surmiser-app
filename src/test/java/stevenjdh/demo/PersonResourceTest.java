@@ -31,7 +31,7 @@ public class PersonResourceTest {
     final String BAD_REQUEST_MSG = "Name was invalid or not provided.";
 
     @Test
-    public void Should_ReturnOk_ForValidName() {
+    void Should_ReturnOk_ForValidName() {
 		given()
           .queryParam("name", "steven")
           .when().get("/api/person")
@@ -46,7 +46,7 @@ public class PersonResourceTest {
 
     // Testing invalid parameters separately because batching passes always.
     @Test
-    public void Should_ReturnBadRquest_ForEmptyName() {
+    void Should_ReturnBadRquest_ForEmptyName() {
         given()
           .queryParam("name", "")
           .when().get("/api/person")
@@ -57,7 +57,7 @@ public class PersonResourceTest {
     }
 
     @Test
-    public void Should_ReturnBadRquest_ForMissingName() {
+    void Should_ReturnBadRquest_ForMissingName() {
         given()
           .when().get("/api/person")
           .then()
@@ -67,7 +67,7 @@ public class PersonResourceTest {
     }
 
     @Test
-    public void Should_ReturnBadRquest_ForNameWithSpaces() {
+    void Should_ReturnBadRquest_ForNameWithSpaces() {
         given()
           .queryParam("name", "John Doe")
           .when().get("/api/person")

@@ -33,7 +33,7 @@ import static org.hamcrest.CoreMatchers.is;
 public class HealthResourceTest {
     
     @Test
-    public void Should_ReturnOkWithUpStatuses_ForAllHealthChecks() {
+    void Should_ReturnOkWithUpStatuses_ForAllHealthChecks() {
 		given()
           .when().get("/q/health")
           .then()
@@ -44,7 +44,7 @@ public class HealthResourceTest {
     }
 
     @Test
-    public void Should_ReturnOkWithUpStatus_ForReadinessCheck() {
+    void Should_ReturnOkWithUpStatus_ForReadinessCheck() {
 		given()
           .when().get("/q/health/ready")
           .then()
@@ -54,7 +54,7 @@ public class HealthResourceTest {
     }
 
     @Test
-    public void Should_ReturnOkWithUpStatus_ForLivenessCheck() {
+    void Should_ReturnOkWithUpStatus_ForLivenessCheck() {
 		given()
           .when().get("/q/health/live")
           .then()

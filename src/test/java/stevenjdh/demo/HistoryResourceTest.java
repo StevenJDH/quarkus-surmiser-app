@@ -40,7 +40,7 @@ public class HistoryResourceTest {
     HistoryRepository history;
 
     @Test
-    public void Should_ReturnOk_ForList() {
+    void Should_ReturnOk_ForList() {
         given()
           .when().get("/api/history")
           .then()
@@ -51,7 +51,7 @@ public class HistoryResourceTest {
     }
     
     @Test
-    public void Should_ReturnOk_ForValidName() {
+    void Should_ReturnOk_ForValidName() {
         final String NAME = "curly";
 
         given()
@@ -65,7 +65,7 @@ public class HistoryResourceTest {
     }
     
     @Test
-    public void Should_ReturnBadRquest_ForNameWithSpaces() {
+    void Should_ReturnBadRquest_ForNameWithSpaces() {
         given()
           .queryParam("name", "John Doe")
           .when().get("/api/history")
@@ -76,14 +76,14 @@ public class HistoryResourceTest {
     }
 
     @Test
-    public void Should_ReturnFiveItems_ForSeededNames() {
+    void Should_ReturnFiveItems_ForSeededNames() {
         // Test classes run in a different order under different environments, and PersonResourceTest persists data.
         assertThat(history.count(), either(is(5L)).or(is(6L)));
     }
 
     @Test
     @Transactional
-    public void Should_SaveNewHistoryEntry_ForName() {
+    void Should_SaveNewHistoryEntry_ForName() {
         String expectedName =  "John";
         var id = history.saveRecord(expectedName);
 
