@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2022 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,21 +26,21 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 @QuarkusTest
-public class PersonResourceTest {
+class PersonResourceTest {
     
     final String BAD_REQUEST_MSG = "Name was invalid or not provided.";
 
     @Test
     void Should_ReturnOk_ForValidName() {
-		given()
-          .queryParam("name", "steven")
-          .when().get("/api/person")
-          .then()
-            .statusCode(200)
-            .body("name", is("steven"),
-                "gender.gender", is(oneOf("male", "female")),
-                "age.age", greaterThan(0),
-                "nationality.country", hasSize(3))
+        given()
+            .queryParam("name", "steven")
+            .when().get("/api/person")
+            .then()
+                .statusCode(200)
+                .body("name", is("steven"),
+                    "gender.gender", is(oneOf("male", "female")),
+                    "age.age", greaterThan(0),
+                    "nationality.country", hasSize(greaterThan(3)))
                 .log().all();
     }
 
@@ -48,32 +48,32 @@ public class PersonResourceTest {
     @Test
     void Should_ReturnBadRquest_ForEmptyName() {
         given()
-          .queryParam("name", "")
-          .when().get("/api/person")
-          .then()
-             .statusCode(400)
-             .body(is(BAD_REQUEST_MSG))
-             .log().all();
+            .queryParam("name", "")
+            .when().get("/api/person")
+            .then()
+                .statusCode(400)
+                .body(is(BAD_REQUEST_MSG))
+                .log().all();
     }
 
     @Test
     void Should_ReturnBadRquest_ForMissingName() {
         given()
-          .when().get("/api/person")
-          .then()
-             .statusCode(400)
-             .body(is(BAD_REQUEST_MSG))
-             .log().all();
+            .when().get("/api/person")
+            .then()
+                .statusCode(400)
+                .body(is(BAD_REQUEST_MSG))
+                .log().all();
     }
 
     @Test
     void Should_ReturnBadRquest_ForNameWithSpaces() {
         given()
-          .queryParam("name", "John Doe")
-          .when().get("/api/person")
-          .then()
-             .statusCode(400)
-             .body(is(BAD_REQUEST_MSG))
-             .log().all();
+            .queryParam("name", "John Doe")
+            .when().get("/api/person")
+            .then()
+                .statusCode(400)
+                .body(is(BAD_REQUEST_MSG))
+                .log().all();
     }
 }
