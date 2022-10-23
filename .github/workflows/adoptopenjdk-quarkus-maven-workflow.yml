@@ -6,52 +6,63 @@ on:
       - master
     paths-ignore:
       - '*.md'
+      - '*.png'
   pull_request:
     branches:
       - master
     paths-ignore:
       - '*.md'
+      - '*.png'
     types: [opened, synchronize, reopened] # https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows#pull_request
+
+env:
+  # This will suppress any downloads for dependencies and plugins or upload messages that would clutter the console log.
+  # Opting for this approach because --no-transfer-progress or -ntp may be suppressing even warning and error messages.
+  MAVEN_OPTS: -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN
+  MAVEN_CLI_OPTS: --batch-mode --errors --fail-at-end --show-version -Dstyle.color=always
+
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         # Disabling shallow clone is recommended for improving relevancy.
         fetch-depth: 0
 
-    - name: Install AdoptOpenJDK
-      uses: AdoptOpenJDK/install-jdk@v1.1.1
+    - name: Install Temurin OpenJDK
+      uses: actions/setup-java@v3
       with:
-        version: '11' # Java 11+ required for Quarkus 2x.
+        # Java 11+ required for Quarkus 2x.
+        java-version: 11
+        distribution: 'temurin'
         architecture: x64
-        impl: hotspot
 
     - name: Cache SonarCloud Packages
-      uses: actions/cache@v1
+      uses: actions/cache@v3
       with:
         path: ~/.sonar/cache
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar
 
     - name: Cache Maven Packages
-      uses: actions/cache@v1
+      uses: actions/cache@v3
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
     - name: Maven Package # Using JVM mode.
-      run: chmod +x ./mvnw && ./mvnw -DskipTests clean package
+      run: chmod +x ./mvnw && ./mvnw $MAVEN_CLI_OPTS -DskipTests clean package
 
     - name: Maven Test and SonarCloud
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any.
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-        ./mvnw verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+        ./mvnw $MAVEN_CLI_OPTS verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
           -Dsonar.projectKey="StevenJDH_quarkus-surmiser-app" \
           -Dsonar.organization="stevenjdh" \
           -Dsonar.host.url="https://sonarcloud.io" \
