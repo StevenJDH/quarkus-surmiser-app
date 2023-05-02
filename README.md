@@ -11,7 +11,7 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=coverage)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=ncloc)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
-![Maintenance](https://img.shields.io/maintenance/yes/2022)
+![Maintenance](https://img.shields.io/maintenance/yes/2023)
 ![GitHub](https://img.shields.io/github/license/StevenJDH/quarkus-surmiser-app)
 
 Surmiser was develop to demo the use of [Quarkus](https://quarkus.io), the Supersonic Subatomic Java Framework, to create a cloud native microservice that exposes a few APIs for testing. The app surmises about a person's name to predict their gender, age, and nationality. The service is powered by [Genderize.io](https://genderize.io), [Agify.io](https://agify.io), and [Nationalize.io](https://nationalize.io), which it uses to produce a determination based on the supplied name.
