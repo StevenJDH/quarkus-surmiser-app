@@ -18,9 +18,9 @@
 
 package stevenjdh.demo;
 
-import io.quarkus.test.junit.NativeImageTest;
+import io.quarkus.test.junit.QuarkusIntegrationTest;
 
-@NativeImageTest
+@QuarkusIntegrationTest
 public class NativePersonResourceIT extends PersonResourceTest {
 
     // Executes the same tests, but in native mode.
