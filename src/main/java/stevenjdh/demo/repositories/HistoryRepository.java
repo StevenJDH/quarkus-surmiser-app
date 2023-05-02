@@ -16,11 +16,10 @@
  * along with surmiser-app.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package stevenjdh.demo.models.repositories;
+package stevenjdh.demo.repositories;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;

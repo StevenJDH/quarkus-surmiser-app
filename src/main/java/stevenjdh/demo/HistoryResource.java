@@ -26,7 +26,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import stevenjdh.demo.models.repositories.HistoryRepository;
+import stevenjdh.demo.repositories.HistoryRepository;
 
 @Path("/api/history")
 public class HistoryResource {

@@ -29,7 +29,7 @@ import javax.ws.rs.core.Response;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import stevenjdh.demo.models.Determination;
-import stevenjdh.demo.models.repositories.HistoryRepository;
+import stevenjdh.demo.repositories.HistoryRepository;
 import stevenjdh.demo.services.AgeService;
 import stevenjdh.demo.services.GenderService;
 import stevenjdh.demo.services.NationalityService;
