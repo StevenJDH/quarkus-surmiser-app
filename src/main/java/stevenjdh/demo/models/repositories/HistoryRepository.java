@@ -37,7 +37,7 @@ public class HistoryRepository implements PanacheRepository<History> {
 
     public List<History> findByNameIgnoreCase(String name) {
         return streamAll().filter( p -> name.equalsIgnoreCase(p.name))
-            .collect(Collectors.toList());
+            .toList();
     }
 
     @Transactional
