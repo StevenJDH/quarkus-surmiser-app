@@ -46,6 +46,8 @@
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/jacoco-report/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.language>java</sonar.language>
+        <!-- SonarCloud Properties -->
+        <sonar.exclusions>**/*/services/*</sonar.exclusions>
         <!-- SonarCloud Links -->
         <sonar.links.homepage>https://github.com/StevenJDH/quarkus-surmiser-app</sonar.links.homepage>
         <sonar.links.ci>https://github.com/StevenJDH/quarkus-surmiser-app/actions</sonar.links.ci>
