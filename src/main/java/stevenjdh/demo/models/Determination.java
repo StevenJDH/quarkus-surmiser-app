@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2023 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,12 @@ package stevenjdh.demo.models;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
 
-@JsonbPropertyOrder(value = { "name", "gender", "age", "nationality" })
+@JsonbPropertyOrder(value = { "name", "genderPrediction", "agePrediction", "nationalityPrediction" })
 public class Determination {
     
     public String name;
-    public Gender gender;
-    public Age age;
-    public Nationality nationality;
+    public GenderPrediction genderPrediction;
+    public AgePrediction agePrediction;
+    public NationalityPrediction nationalityPrediction;
 
 }

@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2023 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,17 +23,17 @@ import java.util.List;
 import javax.json.bind.annotation.JsonbCreator;
 import javax.json.bind.annotation.JsonbProperty;
 
-public class Nationality {
+public class NationalityPrediction {
 
-    private List<Country> country;
+    private final List<Country> country;
 
-    private Nationality(List<Country> country) {
+    private NationalityPrediction(List<Country> country) {
         this.country = country;
     }
 
     @JsonbCreator
-    public static Nationality of(List<Country> country) {
-        return new Nationality(country);
+    public static NationalityPrediction of(List<Country> country) {
+        return new NationalityPrediction(country);
     }
 
     public List<Country> getCountry() {
@@ -42,8 +42,8 @@ public class Nationality {
 
     public static class Country {
 
-        private String countryId;
-        private float probability;
+        private final String countryId;
+        private final float probability;
     
         Country(String countryId, float probability) {
             this.countryId = countryId;

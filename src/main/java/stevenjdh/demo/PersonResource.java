@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2023 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,40 +36,40 @@ import stevenjdh.demo.services.NationalityService;
 
 @Path("/api/person")
 public class PersonResource {
-    
+
     @Inject
     HistoryRepository history;
 
     @Inject
-	@RestClient
+    @RestClient
     GenderService genderService;
 
     @Inject
-	@RestClient
+    @RestClient
     AgeService ageService;
 
     @Inject
-	@RestClient
+    @RestClient
     NationalityService nationalityService;
-    
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response person(@QueryParam("name") String name) {
-        
+
         if (name == null || name.isBlank() || name.contains(" ")) {
-            
+
             return Response.status(Response.Status.BAD_REQUEST)
-                       .entity("Name was invalid or not provided.")
-                       .type(MediaType.TEXT_PLAIN_TYPE)
-                       .build();
+                    .entity("Name was invalid or not provided.")
+                    .type(MediaType.TEXT_PLAIN_TYPE)
+                    .build();
         }
-        
+
         var dtr = new Determination();
 
         dtr.name = name;
-        dtr.gender = genderService.getGenderByName(name);
-        dtr.age = ageService.getAgeByName(name);
-        dtr.nationality = nationalityService.getNationalityByName(name); 
+        dtr.genderPrediction = genderService.getGenderByName(name);
+        dtr.agePrediction = ageService.getAgeByName(name);
+        dtr.nationalityPrediction = nationalityService.getNationalityByName(name);
         history.saveRecord(name);
 
         return Response.ok(dtr).build();

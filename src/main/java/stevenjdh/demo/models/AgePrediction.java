@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2023 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,29 +19,27 @@
 package stevenjdh.demo.models;
 
 import javax.json.bind.annotation.JsonbCreator;
-import javax.json.bind.annotation.JsonbNillable;
 
-@JsonbNillable // Added because JSON-B doesn't render null values by default, which hides gender property.
-public class Gender {
+public class AgePrediction {
+    
+    private final int age;
+    private final int count;
 
-    private String gender;
-    private float probability;
-
-    private Gender(String gender, float probability) {
-        this.gender = gender;
-        this.probability = probability;
+    private AgePrediction(int age, int count) {
+        this.age = age;
+        this.count = count;
     }
 
     @JsonbCreator
-    public static Gender of(String gender, float probability) {
-        return new Gender(gender, probability);
+    public static AgePrediction of(int age, int count) {
+        return new AgePrediction(age, count);
     }
 
-    public String getGender() {
-        return gender;
+    public int getAge() {
+        return age;
     }
 
-    public float getProbability() {
-        return probability;
+    public int getCount() {
+        return count;
     }
 }

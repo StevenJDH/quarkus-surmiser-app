@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2023 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,8 +33,8 @@ import org.eclipse.microprofile.faulttolerance.FallbackHandler;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import stevenjdh.demo.models.Nationality;
-import stevenjdh.demo.models.Nationality.Country;
+import stevenjdh.demo.models.NationalityPrediction;
+import stevenjdh.demo.models.NationalityPrediction.Country;
 
 @Path("/")
 @RegisterRestClient
@@ -45,14 +45,14 @@ public interface NationalityService {
     @Retry(maxRetries = 3, delay = 2000)
     @CircuitBreaker(requestVolumeThreshold = 4, failureRatio = 0.75, delay = 5000)
     @Fallback(NationalityFallback.class)
-    public Nationality getNationalityByName(@QueryParam("name") String name);
+    public NationalityPrediction getNationalityByName(@QueryParam("name") String name);
 
-    public static class NationalityFallback implements FallbackHandler<Nationality> {
+    public static class NationalityFallback implements FallbackHandler<NationalityPrediction> {
 
-        private static final Nationality GENERIC_NATIONALITY = Nationality.of(List.of(Country.of("XX", 0.0f)));
+        private static final NationalityPrediction GENERIC_NATIONALITY = NationalityPrediction.of(List.of(Country.of("XX", 0.0f)));
         
         @Override
-        public Nationality handle(ExecutionContext context) {
+        public NationalityPrediction handle(ExecutionContext context) {
             return GENERIC_NATIONALITY;
         }
 

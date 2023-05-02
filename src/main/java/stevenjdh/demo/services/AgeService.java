@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2023 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ import org.eclipse.microprofile.faulttolerance.FallbackHandler;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import stevenjdh.demo.models.Age;
+import stevenjdh.demo.models.AgePrediction;
 
 @Path("/")
 @RegisterRestClient
@@ -42,14 +42,14 @@ public interface AgeService {
     @Retry(maxRetries = 3, delay = 2000)
     @CircuitBreaker(requestVolumeThreshold = 4, failureRatio = 0.75, delay = 5000)
     @Fallback(AgeFallback.class)
-    public Age getAgeByName(@QueryParam("name") String name);
+    public AgePrediction getAgeByName(@QueryParam("name") String name);
 
-    public static class AgeFallback implements FallbackHandler<Age> {
+    public static class AgeFallback implements FallbackHandler<AgePrediction> {
 
-        private static final Age GENERIC_AGE = Age.of(0, 0);
+        private static final AgePrediction GENERIC_AGE = AgePrediction.of(0, 0);
 
         @Override
-        public Age handle(ExecutionContext context) {
+        public AgePrediction handle(ExecutionContext context) {
             return GENERIC_AGE;
         }
 

@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2023 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ import org.eclipse.microprofile.faulttolerance.FallbackHandler;
 import org.eclipse.microprofile.faulttolerance.Retry;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import stevenjdh.demo.models.Gender;
+import stevenjdh.demo.models.GenderPrediction;
 
 @Path("/")
 @RegisterRestClient
@@ -42,14 +42,14 @@ public interface GenderService {
     @Retry(maxRetries = 3, delay = 2000)
     @CircuitBreaker(requestVolumeThreshold = 4, failureRatio = 0.75, delay = 5000)
     @Fallback(GenderFallback.class)
-    public Gender getGenderByName(@QueryParam("name") String name);
+    public GenderPrediction getGenderByName(@QueryParam("name") String name);
 
-    public static class GenderFallback implements FallbackHandler<Gender> {
+    public static class GenderFallback implements FallbackHandler<GenderPrediction> {
 
-        private static final Gender GENERIC_GENDER = Gender.of("Unknown", 0.0f);
+        private static final GenderPrediction GENERIC_GENDER = GenderPrediction.of("Unknown", 0.0f);
 
         @Override
-        public Gender handle(ExecutionContext context) {
+        public GenderPrediction handle(ExecutionContext context) {
             return GENERIC_GENDER;
         }
 

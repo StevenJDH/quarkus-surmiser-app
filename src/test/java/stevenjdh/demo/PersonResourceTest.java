@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020-2022 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2023 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,9 +38,9 @@ class PersonResourceTest {
             .then()
                 .statusCode(200)
                 .body("name", is("steven"),
-                    "gender.gender", is(oneOf("male", "female")),
-                    "age.age", greaterThan(0),
-                    "nationality.country", hasSize(greaterThan(3)))
+                    "genderPrediction.gender", is(oneOf("male", "female")),
+                    "agePrediction.age", greaterThan(0),
+                    "nationalityPrediction.country", hasSize(greaterThan(3)))
                 .log().all();
     }
 
