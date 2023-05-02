@@ -35,8 +35,7 @@ jobs:
     - name: Install Temurin OpenJDK
       uses: actions/setup-java@v3
       with:
-        # Java 11+ required for Quarkus 2x.
-        java-version: 11
+        java-version: 17
         distribution: 'temurin'
         architecture: x64
 

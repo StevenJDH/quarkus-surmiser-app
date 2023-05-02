@@ -16,8 +16,8 @@
   You should have received a copy of the GNU General Public License
   along with surmiser-app.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>stevenjdh.demo</groupId>
@@ -26,18 +26,18 @@
     
     <properties>
         <!-- Configuration -->
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
         <argLine>-Dfile.encoding=${build.encoding}</argLine>
-        <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
         <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
         <!-- Dependency versions -->
-        <quarkus.platform.version>2.1.0.Final</quarkus.platform.version>
+        <quarkus.platform.version>2.16.6.Final</quarkus.platform.version>
+        <bouncycastle.version>1.73</bouncycastle.version>
         <!-- Plugin versions -->
         <compiler-plugin.version>3.10.1</compiler-plugin.version>
         <surefire-plugin.version>3.0.0</surefire-plugin.version>
@@ -106,6 +106,20 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-kubernetes</artifactId>
         </dependency>
+        <!-- bcpkix-jdk18on is needed for quarkus-kubernetes or the following error will occur:
+        'Build step io.quarkus.kubernetes.client.deployment.KubernetesClientBuildStep#process
+        threw an exception: io.fabric8.kubernetes.client.KubernetesClientException: JcaPEMKeyConverter
+        is provided by BouncyCastle, an optional dependency. To use support for EC Keys you must
+        explicitly add this dependency to classpath.'
+        References:
+        - https://github.com/fabric8io/kubernetes-client/issues/1796
+        - https://github.com/de-jcup/ekube/issues/63
+        -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk18on</artifactId>
+            <version>${bouncycastle.version}</version>
+        </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-container-image-jib</artifactId>
@@ -149,7 +163,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${compiler-plugin.version}</version>
                 <configuration>
-                    <parameters>${maven.compiler.parameters}</parameters>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
