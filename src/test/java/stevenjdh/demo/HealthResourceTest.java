@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2023 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,36 +30,36 @@ import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
-public class HealthResourceTest {
-    
+class HealthResourceTest {
+
     @Test
     void Should_ReturnOkWithUpStatuses_ForAllHealthChecks() {
-		given()
-          .when().get("/q/health")
-          .then()
-            .statusCode(200)
-            .body("status", is("UP"),
-                "checks.status", everyItem(equalTo("UP")))
+        given()
+            .when().get("/q/health")
+            .then()
+                .statusCode(200)
+                .body("status", is("UP"),
+                    "checks.status", everyItem(equalTo("UP")))
                 .log().all();
     }
 
     @Test
     void Should_ReturnOkWithUpStatus_ForReadinessCheck() {
-		given()
-          .when().get("/q/health/ready")
-          .then()
-            .statusCode(200)
-            .body("status", is("UP"))
+        given()
+            .when().get("/q/health/ready")
+            .then()
+                .statusCode(200)
+                .body("status", is("UP"))
                 .log().all();
     }
 
     @Test
     void Should_ReturnOkWithUpStatus_ForLivenessCheck() {
-		given()
-          .when().get("/q/health/live")
-          .then()
-            .statusCode(200)
-            .body("status", is("UP"))
+        given()
+            .when().get("/q/health/live")
+            .then()
+                .statusCode(200)
+                .body("status", is("UP"))
                 .log().all();
     }
 }

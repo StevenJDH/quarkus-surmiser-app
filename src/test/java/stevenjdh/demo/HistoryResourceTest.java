@@ -1,6 +1,6 @@
 /**
  * This file is part of surmiser-app <https://github.com/StevenJDH/quarkus-surmiser-app>.
- * Copyright (C) 2020 Steven Jenkins De Haro.
+ * Copyright (C) 2020-2023 Steven Jenkins De Haro.
  *
  * surmiser-app is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,45 +34,45 @@ import static org.hamcrest.Matchers.*;
 import stevenjdh.demo.models.repositories.HistoryRepository;
 
 @QuarkusTest
-public class HistoryResourceTest {
-    
+class HistoryResourceTest {
+
     @Inject
     HistoryRepository history;
 
     @Test
     void Should_ReturnOk_ForList() {
         given()
-          .when().get("/api/history")
-          .then()
-            .statusCode(200)
-            .body("size()", is(oneOf(5, 6)), // Test classes run in a different order under different environments, and PersonResourceTest persists data.
-                "name", hasItems("Moe", "Larry", "Curly", "Shemp", "Joe"))
+            .when().get("/api/history")
+            .then()
+                .statusCode(200)
+                .body("size()", is(oneOf(5, 6)), // Test classes run in a different order under different environments, and PersonResourceTest persists data.
+                    "name", hasItems("Moe", "Larry", "Curly", "Shemp", "Joe"))
                 .log().all();
     }
-    
+
     @Test
     void Should_ReturnOk_ForValidName() {
         final String NAME = "curly";
 
         given()
-          .queryParam("name", NAME) // Uses a seeded name.
-          .when().get("/api/history")
-          .then()
-            .statusCode(200)
-            .body("size()", greaterThanOrEqualTo(1),
-                "$.name", everyItem(equalToIgnoringCase(NAME)))
+            .queryParam("name", NAME) // Uses a seeded name.
+            .when().get("/api/history")
+            .then()
+                .statusCode(200)
+                .body("size()", greaterThanOrEqualTo(1),
+                        "$.name", everyItem(equalToIgnoringCase(NAME)))
                 .log().all();
     }
-    
+
     @Test
     void Should_ReturnBadRquest_ForNameWithSpaces() {
         given()
-          .queryParam("name", "John Doe")
-          .when().get("/api/history")
-          .then()
-             .statusCode(400)
-             .body(is("Invalid name provided."))
-             .log().all();
+            .queryParam("name", "John Doe")
+            .when().get("/api/history")
+            .then()
+                .statusCode(400)
+                .body(is("Invalid name provided."))
+                .log().all();
     }
 
     @Test
@@ -84,7 +84,7 @@ public class HistoryResourceTest {
     @Test
     @Transactional
     void Should_SaveNewHistoryEntry_ForName() {
-        String expectedName =  "John";
+        String expectedName = "John";
         var id = history.saveRecord(expectedName);
 
         Assertions.assertEquals(expectedName, history.findById(id).name);
