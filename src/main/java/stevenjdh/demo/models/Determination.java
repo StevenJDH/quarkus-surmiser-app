@@ -18,7 +18,7 @@
 
 package stevenjdh.demo.models;
 
-import javax.json.bind.annotation.JsonbPropertyOrder;
+import jakarta.json.bind.annotation.JsonbPropertyOrder;
 
 @JsonbPropertyOrder(value = { "name", "genderPrediction", "agePrediction", "nationalityPrediction" })
 public class Determination {

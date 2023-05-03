@@ -27,8 +27,7 @@
     <properties>
         <!-- Configuration -->
         <java.version>17</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
@@ -36,10 +35,9 @@
         <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
         <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
         <!-- Dependency versions -->
-        <quarkus.platform.version>2.16.6.Final</quarkus.platform.version>
-        <bouncycastle.version>1.73</bouncycastle.version>
+        <quarkus.platform.version>3.0.1.Final</quarkus.platform.version>
         <!-- Plugin versions -->
-        <compiler-plugin.version>3.10.1</compiler-plugin.version>
+        <compiler-plugin.version>3.11.0</compiler-plugin.version>
         <surefire-plugin.version>3.0.0</surefire-plugin.version>
         <!-- JaCoCo Properties -->
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -107,20 +105,6 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-kubernetes</artifactId>
-        </dependency>
-        <!-- bcpkix-jdk18on is needed for quarkus-kubernetes or the following error will occur:
-        'Build step io.quarkus.kubernetes.client.deployment.KubernetesClientBuildStep#process
-        threw an exception: io.fabric8.kubernetes.client.KubernetesClientException: JcaPEMKeyConverter
-        is provided by BouncyCastle, an optional dependency. To use support for EC Keys you must
-        explicitly add this dependency to classpath.'
-        References:
-        - https://github.com/fabric8io/kubernetes-client/issues/1796
-        - https://github.com/de-jcup/ekube/issues/63
-        -->
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-jdk18on</artifactId>
-            <version>${bouncycastle.version}</version>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>

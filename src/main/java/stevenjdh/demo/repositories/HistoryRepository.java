@@ -21,8 +21,8 @@ package stevenjdh.demo.repositories;
 import java.time.Instant;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.transaction.Transactional;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import stevenjdh.demo.models.History;

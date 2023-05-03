@@ -18,8 +18,8 @@
 
 package stevenjdh.demo.models;
 
-import javax.json.bind.annotation.JsonbCreator;
-import javax.json.bind.annotation.JsonbNillable;
+import jakarta.json.bind.annotation.JsonbCreator;
+import jakarta.json.bind.annotation.JsonbNillable;
 
 @JsonbNillable // Added because JSON-B doesn't render null values by default, which hides gender property.
 public class GenderPrediction {
