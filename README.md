@@ -11,7 +11,7 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=coverage)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=StevenJDH_quarkus-surmiser-app&metric=ncloc)](https://sonarcloud.io/dashboard?id=StevenJDH_quarkus-surmiser-app)
-![Maintenance](https://img.shields.io/maintenance/yes/2023)
+![Maintenance](https://img.shields.io/maintenance/yes/2024)
 ![GitHub](https://img.shields.io/github/license/StevenJDH/quarkus-surmiser-app)
 
 Surmiser was develop to demo the use of [Quarkus](https://quarkus.io), the Supersonic Subatomic Java Framework, to create a cloud native microservice that exposes a few APIs for testing. The app surmises about a person's name to predict their gender, age, and nationality. The service is powered by [Genderize.io](https://genderize.io), [Agify.io](https://agify.io), and [Nationalize.io](https://nationalize.io), which it uses to produce a determination based on the supplied name.
@@ -68,17 +68,10 @@ Many commonly asked questions are answered in the FAQ:
 
 ## Want to show your support?
 
-|Method       | Address                                                                                                    |
-|------------:|:-----------------------------------------------------------------------------------------------------------|
-|PayPal:      | [https://www.paypal.me/stevenjdh](https://www.paypal.me/stevenjdh "Steven's Paypal Page")                  |
-|Bitcoin:     | 3GyeQvN6imXEHVcdwrZwKHLZNGdnXeDfw2                                                                         |
-|Litecoin:    | MAJtR4ccdyUQtiiBpg9PwF2AZ6Xbk5ioLm                                                                         |
-|Ethereum:    | 0xa62b53c1d49f9C481e20E5675fbffDab2Fcda82E                                                                 |
-|Dash:        | Xw5bDL93fFNHe9FAGHV4hjoGfDpfwsqAAj                                                                         |
-|Zcash:       | t1a2Kr3jFv8WksgPBcMZFwiYM8Hn5QCMAs5                                                                        |
-|PIVX:        | DQq2qeny1TveZDcZFWwQVGdKchFGtzeieU                                                                         |
-|Ripple:      | rLHzPsX6oXkzU2qL12kHCH8G8cnZv1rBJh<br />Destination Tag: 2357564055                                        |
-|Monero:      | 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3D<br />&#8618;aAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CWDXrwM8yCGgEdhV3Wt|
+|Method          | Address                                                                                   |
+|---------------:|:------------------------------------------------------------------------------------------|
+|PayPal:         | [https://www.paypal.me/stevenjdh](https://www.paypal.me/stevenjdh "Steven's Paypal Page") |
+|Cryptocurrency: | [Supported options](https://github.com/StevenJDH/StevenJDH/wiki/Donate-Cryptocurrency)    |
 
 
 // Steven Jenkins De Haro ("StevenJDH" on GitHub)
